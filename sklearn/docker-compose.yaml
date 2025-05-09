@@ -1,0 +1,21 @@
+version: '3.8'
+services:
+  triton_sklearn_example:
+    command: ["--model-repository=/models", "--log-info=1"]
+    build: .
+    shm_size: '4gb'
+    restart: unless-stopped
+    ports:
+      - 8600:8000  # HTTP
+      - 8601:8001  # gRPC
+      - 8602:8002  # Metrics
+    volumes:
+      - ./:/workspace
+      - ./model_repository:/models
+    environment:
+      - LC_ALL=C.UTF-8
+      - LANG=C.UTF-8
+    deploy:
+      resources:
+        limits:
+            cpus: '4' 
