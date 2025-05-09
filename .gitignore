@@ -462,3 +462,5 @@ __pycache__/
 # OpenCover UI analysis results
 OpenCover/
 junit/
+
+.DS_Store
